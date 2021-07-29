@@ -17,7 +17,7 @@ public class ResourceCentre {
 		int option = 0;
 
 		while (option != OPTION_QUIT) { //Done by Jiing Heng
-
+			
 			ResourceCentre.menu();
 			option = Helper.readInt("Enter an option > ");
 
