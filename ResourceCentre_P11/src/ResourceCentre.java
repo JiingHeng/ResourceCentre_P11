@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class ResourceCentre {
 
 
+	private static final int OPTION_QUIT = 5;
 	public static void main(String[] args) {
 
 		ArrayList<Camcorder> camcorderList = new ArrayList<Camcorder>();
@@ -15,7 +16,7 @@ public class ResourceCentre {
 
 		int option = 0;
 
-		while (option != 5) {
+		while (option != OPTION_QUIT) { //Done by Jiing Heng
 
 			ResourceCentre.menu();
 			option = Helper.readInt("Enter an option > ");
@@ -57,12 +58,8 @@ public class ResourceCentre {
 
 			} else if (option == 4) {
 				// Return item
-				ResourceCentre.setHeader("RETURN");				
-				ResourceCentre.setHeader("ITEM TYPES");
-				System.out.println("1. Camcorder");
-				System.out.println("2. Chromebook");
+				int itemType = returnItems(); //Done by Jiing Heng
 				
-				int itemType = Helper.readInt("Enter option to select item type > ");
 				if (itemType == 1) {
 					// Return camcorder
 					ResourceCentre.returnCamcorder(camcorderList);
@@ -73,7 +70,7 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 5) {
+			} else if (option == OPTION_QUIT) {
 				System.out.println("Bye!");
 			} else {
 				System.out.println("Invalid option");
@@ -81,6 +78,16 @@ public class ResourceCentre {
 
 		}
 
+	}
+
+	private static int returnItems() {
+		ResourceCentre.setHeader("RETURN");				
+		ResourceCentre.setHeader("ITEM TYPES");
+		System.out.println("1. Camcorder");
+		System.out.println("2. Chromebook");
+		
+		int itemType = Helper.readInt("Enter option to select item type > ");
+		return itemType;
 	}
 
 	private static int loanItems() {
