@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class ResourceCentre {
 
 
-	private static final int OPTION_QUIT = 5;
 	public static void main(String[] args) {
 
 		ArrayList<Camcorder> ccList = new ArrayList<Camcorder>(); //Done by Hao Wen
@@ -14,19 +13,19 @@ public class ResourceCentre {
 		cbList.add(new Chromebook("CB001", "ASUS Chromebook ", "Win 10"));
 		cbList.add(new Chromebook("CB002", "HP Chromebook", "Win 10"));
 
-		int option = 0;
+		int selection = 0;
 
-		while (option != OPTION_QUIT) { //Done by Jiing Heng
-			
+		while (selection != 5) {
+
 			ResourceCentre.menu();
-			option = Helper.readInt("Enter an option > ");
+			selection = Helper.readInt("Enter an option > ");
 
-			if (option == 1) {
+			if (selection == 1) {
 				// View all items
 				ResourceCentre.viewAllCamcorder(ccList);
 				ResourceCentre.viewAllChromebook(cbList);
 
-			} else if (option == 2) {
+			} else if (selection == 2) {
 				int itemType = addNewItems(); //Done by Shafiqah
 
 				if (itemType == 1) {
@@ -43,7 +42,7 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 3) {
+			} else if (selection == 3) {
 				int itemType = loanItems(); //Done by Shafiqah
 
 				if (itemType == 1) {
@@ -56,10 +55,14 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 4) {
+			} else if (selection == 4) {
 				// Return item
-				int itemType = returnItems(); //Done by Jiing Heng
+				ResourceCentre.setHeader("RETURN");				
+				ResourceCentre.setHeader("ITEM TYPES");
+				System.out.println("1. Camcorder");
+				System.out.println("2. Chromebook");
 				
+				int itemType = Helper.readInt("Enter option to select item type > ");
 				if (itemType == 1) {
 					// Return camcorder
 					ResourceCentre.returnCamcorder(ccList);
@@ -70,7 +73,7 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == OPTION_QUIT) {
+			} else if (selection == 5) {
 				System.out.println("Bye!");
 			} else {
 				System.out.println("Invalid option");
@@ -78,16 +81,6 @@ public class ResourceCentre {
 
 		}
 
-	}
-
-	private static int returnItems() {
-		ResourceCentre.setHeader("RETURN");				
-		ResourceCentre.setHeader("ITEM TYPES");
-		System.out.println("1. Camcorder");
-		System.out.println("2. Chromebook");
-		
-		int itemType = Helper.readInt("Enter option to select item type > ");
-		return itemType;
 	}
 
 	private static int loanItems() {
